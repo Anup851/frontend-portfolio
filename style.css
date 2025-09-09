@@ -1308,11 +1308,27 @@ section {
     }
 }
 
+/* Responsive Design */
+
+/* Tablet and below */
+@media (max-width: 1024px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
+    /* Navbar */
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 80px;
+        top: 60px; /* reduced from 80px */
         flex-direction: column;
         background: rgba(17, 18, 25, 0.95);
         backdrop-filter: blur(20px);
@@ -1320,8 +1336,9 @@ section {
         text-align: center;
         transition: left var(--transition-base);
         box-shadow: var(--shadow-xl);
-        padding: var(--space-lg) 0;
+        padding: var(--space-md) 0; /* smaller vertical padding */
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 999;
     }
 
     .nav-menu.active {
@@ -1329,24 +1346,26 @@ section {
     }
 
     .nav-item {
-        margin: var(--space-sm) 0;
+        margin: var(--space-xs) 0; /* smaller spacing between items */
     }
 
     .hamburger {
         display: flex;
+        width: 35px;
+        height: 35px;
     }
 
     .theme-toggle {
-        width: 40px;
-        height: 40px;
-        margin-left: var(--space-sm);
+        width: 35px;
+        height: 35px;
     }
 
-    /* Mobile Hero Layout */
+    /* Hero section adjustments */
     .hero-content {
         grid-template-columns: 1fr;
         gap: var(--space-2xl);
         text-align: center;
+        margin-top: 20px; /* prevent navbar overlap */
     }
 
     .hero-text {
@@ -1367,7 +1386,7 @@ section {
         font-size: 5rem;
     }
 
-    /* Mobile Experience Timeline */
+    /* Experience timeline */
     .experience-timeline::before {
         left: 30px;
         transform: none;
@@ -1439,7 +1458,7 @@ section {
     .contact-form {
         padding: var(--space-lg);
     }
-    
+
     .contact-details p {
         flex-direction: column;
         text-align: center;
@@ -1447,25 +1466,40 @@ section {
     }
 }
 
+/* Small Mobile */
 @media (max-width: 480px) {
+    .nav-menu {
+        top: 50px; /* smaller offset for very small screens */
+        padding: var(--space-sm) 0;
+    }
+
+    .hero-content {
+        margin-top: 15px; /* prevent overlap */
+    }
+
+    .hero-image {
+        margin-top: 20px; /* push image slightly down */
+    }
+
     .hero-title {
         font-size: var(--font-3xl);
     }
-    
+
     .hero-button {
         padding: var(--space-sm) var(--space-lg);
         font-size: var(--font-sm);
     }
-    
+
     .project-content,
     .skill-item {
         padding: var(--space-md);
     }
-    
+
     .contact-form {
         padding: var(--space-lg);
     }
 }
+
 
 /* High-performance animations for modern browsers */
 @media (prefers-reduced-motion: no-preference) {
