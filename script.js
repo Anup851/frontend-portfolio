@@ -832,3 +832,17 @@ if ('ontouchstart' in window) {
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.body.classList.add('reduced-motion');
 }
+
+
+// Disable Ctrl + +, Ctrl + -, Ctrl + Mouse Wheel zoom
+window.addEventListener("wheel", function(e) {
+  if (e.ctrlKey) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+window.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+    e.preventDefault();
+  }
+});
