@@ -419,6 +419,15 @@ body::before {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    transition: transform var(--transition-base);
+}
+
 .profile-placeholder {
     font-size: 8rem;
     color: rgba(255, 255, 255, 0.8);
@@ -427,6 +436,10 @@ body::before {
 
 .profile-image:hover .profile-placeholder {
     transform: scale(1.1);
+}
+
+.profile-image:hover .profile-photo {
+    transform: scale(1.08);
 }
 
 .hero-button {
