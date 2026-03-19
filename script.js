@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeTypingEffect();
     initializeProjectCardEffects();
     initializeSkillProgressBars();
+    initializeResumeUploader();
     initializeThemeTransitions();
 });
 
@@ -737,6 +738,142 @@ function initializeSkillProgressBars() {
         skill.addEventListener('mouseleave', function() {
             progressBar.style.width = '0%';
         });
+    });
+}
+
+/**
+ * Resume uploader: parse resume file skills and merge into Skills section
+ */
+function initializeResumeUploader() {
+    const resumeInput = document.getElementById('resumeInput');
+    const resumeStatus = document.getElementById('resumeStatus');
+
+    if (!resumeInput || !resumeStatus) return;
+
+    resumeInput.addEventListener('change', async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        resumeStatus.textContent = `Parsing ${file.name}...`;
+        resumeStatus.className = 'resume-status';
+
+        try {
+            let text = '';
+            const fileName = file.name.toLowerCase();
+
+            if (fileName.endsWith('.txt')) {
+                text = await file.text();
+            } else if (fileName.endsWith('.json')) {
+                const parsed = JSON.parse(await file.text());
+                if (Array.isArray(parsed)) {
+                    const added = addSkillsFromResume(parsed);
+                    resumeStatus.textContent = `Added ${added} new skills from JSON resume.`;
+                    resumeStatus.className = 'resume-status success';
+                    return;
+                }
+                text = JSON.stringify(parsed);
+            } else if (fileName.endsWith('.pdf')) {
+                text = await readPdfText(file);
+            } else {
+                throw new Error('Unsupported file type. Upload .txt, .json, or .pdf');
+            }
+
+            const skills = extractSkillsFromText(text);
+            if (skills.length === 0) {
+                resumeStatus.textContent = 'No skills detected in resume text.';
+                resumeStatus.className = 'resume-status error';
+                return;
+            }
+
+            const added = addSkillsFromResume(skills);
+            resumeStatus.textContent = `Detected ${skills.length} skills, added ${added} new ones.`;
+            resumeStatus.className = 'resume-status success';
+        } catch (error) {
+            resumeStatus.textContent = `Error parsing resume: ${error.message}`;
+            resumeStatus.className = 'resume-status error';
+        }
+    });
+}
+
+function extractSkillsFromText(text) {
+    const normalized = text.toLowerCase().replace(/[\n\r]+/g, ' ');
+    const knownSkills = [
+        'html','css','javascript','typescript','react','angular','vue','svelte','node.js','node','express',
+        'next.js','nuxt','python','django','flask','sql','mysql','postgresql','mongodb','firebase','graphql',
+        'rest','java','spring','c#','.net','c++','go','ruby','php','aws','azure','docker','kubernetes','git',
+        'npm','webpack','jest','redux','sass','less','tailwind','bootstrap','material ui','figma','adobe xd',
+        'kotlin','swift','machine learning','data analysis','ai','tensorflow','pandas','numpy'
+    ];
+
+    const found = new Set();
+    knownSkills.forEach(skill => {
+        const regex = new RegExp(`\\b${skill.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+        if (regex.test(normalized)) {
+            found.add(skill.split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' '));
+        }
+    });
+
+    return Array.from(found);
+}
+
+function addSkillsFromResume(skills) {
+    const skillsGrid = document.querySelector('.skills-grid');
+    if (!skillsGrid) return 0;
+
+    const existingSkillNames = new Set(Array.from(skillsGrid.querySelectorAll('.skill-item h3')).map(el => el.textContent?.toLowerCase().trim()));
+    const icons = ['🌐','🎨','⚡','⚙️','🛠️','🐍','☁️','🔒','📊','🤖','📦','🧩'];
+    let addedCount = 0;
+
+    skills.forEach((skill, idx) => {
+        const normalized = skill.toLowerCase().trim();
+        if (!normalized || existingSkillNames.has(normalized)) return;
+
+        const item = document.createElement('div');
+        item.className = 'skill-item';
+        item.innerHTML = `
+            <div class="skill-icon">${icons[addedCount % icons.length]}</div>
+            <h3>${skill}</h3>
+            <p>Auto-added from resume.</p>
+        `;
+        skillsGrid.appendChild(item);
+        existingSkillNames.add(normalized);
+        addedCount += 1;
+    });
+
+    return addedCount;
+}
+
+async function readPdfText(file) {
+    if (!window.pdfjsLib) {
+        await loadPdfJs();
+    }
+    if (!window.pdfjsLib) throw new Error('PDF.js unavailable');
+
+    const arrayBuffer = await file.arrayBuffer();
+    const loadingTask = window.pdfjsLib.getDocument({ data: arrayBuffer });
+    const pdf = await loadingTask.promise;
+
+    let text = '';
+    for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        text += ' ' + content.items.map(item => item.str).join(' ');
+    }
+
+    return text;
+}
+
+function loadPdfJs() {
+    return new Promise((resolve, reject) => {
+        if (window.pdfjsLib) return resolve();
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.122/pdf.min.js';
+        script.onload = () => {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.122/pdf.worker.min.js';
+            resolve();
+        };
+        script.onerror = reject;
+        document.head.appendChild(script);
     });
 }
 

@@ -36,9 +36,6 @@
                         <a href="#skills" class="nav-link">Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#experience" class="nav-link">Experience</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
                 </ul>
@@ -73,7 +70,7 @@
                     <p class="hero-role">Full Stack Developer</p>
                     <a class="hero-button">Hi, I'm Anup Singh Full Stack Developer  Building responsive, user-friendly web experiences with modern technologies. Passionate about creating interactive applications</a>
                     <div class="hero-actions">
-                        <a href="Anup_resume.pdf" class="cv-button" download>Download CV</a>
+                        <a id="cvDownloadButton" href="anup_resume (5).pdf" class="cv-button" download="anup_resume (5).pdf">Download CV</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -110,89 +107,194 @@
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <!-- Edit these skills as needed -->
-                <div class="skill-item">
-                    <div class="skill-icon">&#127760;</div>
-                    <h3>HTML</h3>
-                    <p>Semantic markup and modern HTML5 features</p>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon">&#127912;</div>
-                    <h3>CSS</h3>
-                    <p>Responsive design and modern CSS techniques</p>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon">&#9889;</div>
-                    <h3>JavaScript</h3>
-                    <p>ES6+ features and DOM manipulation</p>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon">&#9883;</div>
-                    <h3>React</h3>
-                    <p>Component-based UI development</p>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon">&#128994;</div>
-                    <h3>Node.js</h3>
-                    <p>Server-side JavaScript development</p>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon">&#128013;</div>
-                    <h3>Python</h3>
-                    <p>Backend development and automation</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="experience-timeline">
-                <!-- Experience Item 1 -->
-                <div class="experience-item">
-                    <div class="experience-date">2024 - Present</div>
-                    <div class="experience-content">
-                        <h3>Frontend Developer Intern</h3>
-                        <h4>Tech Solutions Inc.</h4>
-                        <p>Developing responsive web applications using React.js and modern CSS frameworks. Collaborating with design teams to implement user-friendly interfaces.</p>
-                        <div class="experience-skills">
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">CSS3</span>
-                        </div>
+            <div class="skills-container">
+                <!-- Key Skills Highlight -->
+                <div class="key-skills">
+                    <h3>Key Technologies</h3>
+                    <div class="key-skills-grid">
+                        <div class="skill-badge primary">React 18</div>
+                        <div class="skill-badge primary">Node.js & Express</div>
+                        <div class="skill-badge primary">TypeScript</div>
+                        <div class="skill-badge primary">Generative AI</div>
+                        <div class="skill-badge primary">PostgreSQL</div>
+                        <div class="skill-badge primary">REST APIs</div>
+                        <div class="skill-badge primary">Tailwind CSS</div>
+                        <div class="skill-badge primary">Authentication & Security</div>
                     </div>
                 </div>
-                
-                <!-- Experience Item 2 -->
-                <div class="experience-item">
-                    <div class="experience-date">2023 - 2024</div>
-                    <div class="experience-content">
-                        <h3>Web Development Projects</h3>
-                        <h4>Freelance</h4>
-                        <p>Created multiple web applications including e-commerce sites, portfolio websites, and interactive dashboards for various clients.</p>
-                        <div class="experience-skills">
-                            <span class="skill-tag">HTML5</span>
-                            <span class="skill-tag">CSS3</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Node.js</span>
+
+                <!-- Categorized Skills -->
+                <div class="skills-grid">
+                    <!-- Frontend -->
+                    <div class="skill-category">
+                        <h4 class="category-title">Frontend</h4>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-icon">⚛️</div>
+                                <h3>React 18</h3>
+                                <p>Component architecture, hooks, state management</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🎨</div>
+                                <h3>Tailwind CSS</h3>
+                                <p>Utility-first CSS, responsive design</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">⚡</div>
+                                <h3>JavaScript/TypeScript</h3>
+                                <p>ES6+, async/await, type-safe development</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🧩</div>
+                                <h3>Radix UI & UI Libraries</h3>
+                                <p>Accessible component libraries, styling</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📱</div>
+                                <h3>Responsive Design</h3>
+                                <p>Mobile-first, adaptive layouts</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Experience Item 3 -->
-                <div class="experience-item">
-                    <div class="experience-date">2023</div>
-                    <div class="experience-content">
-                        <h3>BCA Program</h3>
-                        <h4>University Studies</h4>
-                        <p>Currently pursuing Bachelor of Computer Applications with focus on web development, programming fundamentals, and software engineering principles.</p>
-                        <div class="experience-skills">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">Database</span>
+
+                    <!-- Backend -->
+                    <div class="skill-category">
+                        <h4 class="category-title">Backend</h4>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-icon">💚</div>
+                                <h3>Node.js & Express</h3>
+                                <p>Server-side JS, RESTful APIs, middleware</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🔐</div>
+                                <h3>Authentication & Security</h3>
+                                <p>JWT, Passport.js, bcryptjs, rate limiting</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🔗</div>
+                                <h3>REST APIs</h3>
+                                <p>API design, error handling, CORS</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">⚙️</div>
+                                <h3>Xano Backend</h3>
+                                <p>No-code backend platform, workflows</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📡</div>
+                                <h3>WebSocket & Real-time</h3>
+                                <p>Live communication, event handling</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Databases & Data -->
+                    <div class="skill-category">
+                        <h4 class="category-title">Databases & Data</h4>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-icon">🗄️</div>
+                                <h3>PostgreSQL</h3>
+                                <p>Relational databases, schema design, queries</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🔥</div>
+                                <h3>Supabase</h3>
+                                <p>Firebase alternative, auth, real-time DB</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📊</div>
+                                <h3>Data Management</h3>
+                                <p>ORM (Drizzle), query optimization, caching</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📈</div>
+                                <h3>Data Visualization</h3>
+                                <p>Charts, dashboards, Recharts library</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI & Machine Learning -->
+                    <div class="skill-category">
+                        <h4 class="category-title">Generative AI Integration</h4>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-icon">🤖</div>
+                                <h3>LLM Integration</h3>
+                                <p>LangChain, prompt engineering, memory systems</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">✨</div>
+                                <h3>Gemini & AI APIs</h3>
+                                <p>Google Gemini, Sarvam AI, DeepAI integration</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">💬</div>
+                                <h3>Chatbot Development</h3>
+                                <p>Conversational AI, session management, NLP</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📸</div>
+                                <h3>Media Analysis & Generation</h3>
+                                <p>Image processing, AI-powered insights</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & DevOps -->
+                    <div class="skill-category">
+                        <h4 class="category-title">Tools & DevOps</h4>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-icon">🚀</div>
+                                <h3>Vite & Build Tools</h3>
+                                <p>Fast bundler, HMR, TypeScript support</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🌐</div>
+                                <h3>Deployment Platforms</h3>
+                                <p>Vercel, Netlify, Render, Xano hosting</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📦</div>
+                                <h3>Version Control</h3>
+                                <p>Git, GitHub, code collaboration</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">✅</div>
+                                <h3>Form Validation & Typing</h3>
+                                <p>React Hook Form, Zod, TypeScript</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concepts & Patterns -->
+                    <div class="skill-category">
+                        <h4 class="category-title">Concepts & Architecture</h4>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-icon">🏗️</div>
+                                <h3>Full-Stack Development</h3>
+                                <p>End-to-end application architecture</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🔄</div>
+                                <h3>State Management</h3>
+                                <p>TanStack React Query, context API</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">⚙️</div>
+                                <h3>Scalable Architecture</h3>
+                                <p>Service layer pattern, modularity</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🛡️</div>
+                                <h3>Security Best Practices</h3>
+                                <p>Input validation, DDoS protection, encryption</p>
+                            </div>
                         </div>
                     </div>
                 </div>
